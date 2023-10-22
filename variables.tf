@@ -21,5 +21,6 @@ variable "admin_password" {
 
 variable "vpc_id" {
   description = "vpc id"
+  type = string
   default = "vpc-07b3a2c8059d7baa4"
 }
