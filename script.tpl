@@ -12,5 +12,5 @@ Start-Process `
     -ArgumentList "/S"
 </powershell>
 <script>
-net user administrator ${admin_password} rhfvmwhs1! netdom.exe renamecomputer %computername% /newname:${host_name} /force /REboot 1
+net user administrator ${admin_password} netdom.exe renamecomputer %computername% /newname:${host_name} /force /REboot 1
 </script>

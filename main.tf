@@ -1,27 +1,28 @@
 data "template_file" "hostname_init" {
-  template = file("${path.module}/hostname.tpl")
+  template = file("${path.module}/script.tpl")
   vars = {
- //   admin_password = var.admin_password
+    admin_password = var.admin_password
     host_name = var.host_name
   }
 }
 
-data "aws_ami" "windows" {
-  most_recent = true
+# data "aws_ami" "windows" {
+#   most_recent = true
   
-  filter {
-       name   = "virtualization-type"
-       values = ["hvm"]
-  }
+#   filter {
+#        name   = "virtualization-type"
+#        values = ["hvm"]
+#   }
 
-  filter {
-    name   = "name"
-    values = ["Windows_Server-2019-English-Full-Base-*"]
-  }
-}
+#   filter {
+#     name   = "name"
+#     values = ["Windows_Server-2019-English-Full-Base-*"]
+#   }
+# }
 
 resource "aws_instance" "golfzon-windows" {
-  ami           = data.aws_ami.windows.id
+#   ami           = data.aws_ami.windows.id
+  ami           = "ami-0e08d64c86693b8ed"
   instance_type = "t3.micro"
 
   ## network interface for ip addrs attachment dynamically
