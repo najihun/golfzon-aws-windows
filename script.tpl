@@ -10,7 +10,9 @@ Start-Process $ExtractPath
 Start-Process `
     -FilePath $env:USERPROFILE\Desktop\EC2Install.exe `
     -ArgumentList "/S"
+Rename-Computer -NewName ${host_name} -Force -Restart
 </powershell>
 <script>
-net user administrator ${admin_password} netdom.exe renamecomputer %computername% /newname:${host_name} /force /REboot 1
+net user administrator ${admin_password} 
+netdom.exe renamecomputer %computername% /newname:${host_name} /force /REboot 1
 </script>
