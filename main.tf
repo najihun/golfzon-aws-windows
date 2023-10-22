@@ -1,7 +1,7 @@
 data "template_file" "hostname_init" {
-  template = file("${path.module}/script.tpl")
+  template = file("${path.module}/hostname.tpl")
   vars = {
-    admin_password = var.admin_password
+ //   admin_password = var.admin_password
     host_name = var.host_name
   }
 }
