@@ -30,6 +30,7 @@ resource "aws_instance" "golfzon-windows" {
     device_index         = 0
   }
 
+  key_name = "golfzon-test-keypair"
   user_data = data.template_file.hostname_init.rendered
 
   tags = {
