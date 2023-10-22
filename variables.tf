@@ -19,7 +19,7 @@ variable "admin_password" {
   default     = "rhfvmwhs1!"
 }
 
-variable "vpc_id" {}
+variable "vpc_id" {
   description = "vpc id"
   default = "vpc-07b3a2c8059d7baa4"
 }
