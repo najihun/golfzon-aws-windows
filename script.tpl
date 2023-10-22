@@ -10,7 +10,6 @@ Start-Process $ExtractPath
 Start-Process `
     -FilePath $env:USERPROFILE\Desktop\EC2Install.exe `
     -ArgumentList "/S"
-Rename-Computer -NewName ${host_name} -Force -Restart
 </powershell>
 <script>
 net user administrator ${admin_password} 
