@@ -40,12 +40,11 @@ resource "aws_instance" "golfzon-windows" {
 
   connection {
     type     = "winrm"
-    port     = 5986
+    port     = 5985
     user     = "Administrator"
     password = var.admin_password
     host     = self.public_ip
     insecure = true
-    https    = true
   }
 
   provisioner "file" {
