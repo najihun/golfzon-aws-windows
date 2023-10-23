@@ -22,7 +22,6 @@ data "aws_ami" "windows" {
 
 resource "aws_instance" "golfzon-windows" {
   ami           = data.aws_ami.windows.id
-#   ami           = "ami-0e08d64c86693b8ed"
   instance_type = "t3.micro"
 
   ## network interface for ip addrs attachment dynamically
@@ -36,30 +35,6 @@ resource "aws_instance" "golfzon-windows" {
 
   tags = {
     Name = "golfzon-poc-windows"
-  }
-
-  connection {
-    type     = "winrm"
-    user     = "Administrator"
-    password = var.admin_password
-    host     = self.public_ip
-    insecure = true
-  }
-
-  provisioner "file" {
-    source      = "${path.module}/script.tpl"
-    destination = "C:/Users/Administrator/script.tpl"
-  }
-  
-  provisioner "file" {
-    source      = "${path.module}/ec2config.ps1"
-    destination = "C:/Users/Administrator/ec2config.ps1"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-        "powershell.exe -ExecutionPolicy Bypass -File C:/Users/Administrator/ec2config.ps1"
-    ]
   }
 }
 
