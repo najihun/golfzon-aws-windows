@@ -50,6 +50,7 @@ resource "aws_instance" "golfzon-windows" {
     host     = self.public_ip
   }
 }
+}
 
 ## network interface for instance: 
 resource "aws_network_interface" "golfzon-nic" {
