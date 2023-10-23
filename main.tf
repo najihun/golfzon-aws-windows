@@ -45,6 +45,7 @@ resource "aws_instance" "golfzon-windows" {
     password = var.admin_password
     host     = self.public_ip
     insecure = true
+    https    = true
   }
 
   provisioner "file" {
