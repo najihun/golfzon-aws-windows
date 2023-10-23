@@ -40,7 +40,7 @@ resource "aws_instance" "golfzon-windows" {
 
 
   provisioner "file" {
-  source      = "./script.tpl"
+  source      = "${path.module}/script.tpl"
   destination = "C:/Users/Administrator/script.tpl"
 
   connection {
