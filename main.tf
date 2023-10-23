@@ -38,18 +38,30 @@ resource "aws_instance" "golfzon-windows" {
     Name = "golfzon-poc-windows"
   }
 
-
-  provisioner "file" {
-  source      = "${path.module}/script.tpl"
-  destination = "C:/Users/Administrator/script.tpl"
-
   connection {
     type     = "winrm"
+    port     = 5986
     user     = "Administrator"
     password = var.admin_password
     host     = self.public_ip
+    insecure = true
   }
-}
+
+  provisioner "file" {
+    source      = "${path.module}/script.tpl"
+    destination = "C:/Users/Administrator/script.tpl"
+  }
+  
+  provisioner "file" {
+    source      = "${path.module}/ec2config.ps1"
+    destination = "C:/Users/Administrator/ec2config.ps1"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+        "powershell.exe -ExecutionPolicy Bypass -File C:/Users/Administrator/ec2config.ps1"
+    ]
+  }
 }
 
 ## network interface for instance: 
