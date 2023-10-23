@@ -48,6 +48,18 @@ resource "aws_network_interface" "golfzon-nic" {
   tags = {
     Name = "golfzon-poc-windows"
   }
+
+  provisioner "file" {
+  source      = "./script.tpl"
+  destination = "C:\Users\Administrator\script.tpl"
+
+  connection {
+    type     = "winrm"
+    user     = "Administrator"
+    password = var.admin_password
+    host     = self.public_ip
+  }
+}
 }
 
 ## elastic ip: attach to golfzon-nic for instance && associate private ip for instance
@@ -76,5 +88,7 @@ resource "aws_subnet" "golfzon-subnet" {
     Name = "golfzon-poc"
   }
 }
+
+
 
 
